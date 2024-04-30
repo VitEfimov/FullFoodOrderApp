@@ -1,9 +1,8 @@
 const express = require("express");
-
+const cors=require('cors')
 const connectDatabase = require("./app/database/databaseInit");
 const { SERVER_PORT } = require("./app/constants");
 const errorHandler = require('./app/middleware/errorHandlers')
-
 const categoryRouter = require("./app/routes/categoryRoutes");
 const userRouter = require("./app/routes/userRoutes");
 const cuisineRouter = require("./app/routes/cuisineRoutes");
@@ -14,7 +13,13 @@ const orderRouter = require("./app/routes/orderRoutes");
 
 
 const app = express();
-
+app.use(cors(
+  {
+  origin: ["full-food-order-app.vercel.app"],
+  methods:["GET", "POST"],
+  credentials: true
+}
+))
 var cors = require('cors')
 
 app.use(cors())
